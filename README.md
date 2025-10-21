@@ -11,7 +11,7 @@
 
 
 代码 
-
+```
 m <- Inf
 num <- 7
 data <- matrix(c(
@@ -23,13 +23,14 @@ data <- matrix(c(
   m, m, m, m, 1, m, 8,
   m, m, m, m, m, m, m
 ), nrow = num, byrow = TRUE)
+```
 2.辅助参数设置 
 
 
 
 
 代码 
-
+```
 dist <- rep(m,num)
 path <- rep(-1,num)
 mark <- rep(0,num)
@@ -51,15 +52,17 @@ Min <- function(last){
   }
   return(w)
 }
+```
 4.Dijkstra算法主要过程 
 4.1.起点初始化
 
 代码 
-
+```
 k = 1
 dist[k] = 0
 path[k] = -1
 mark[k] = 1
+```
 4.2.内外循环  
 
 
@@ -68,7 +71,7 @@ mark[k] = 1
 
 
 代码 
-
+```
 for(x in 2:num){ # 遍历全部的点
   for (i in 2:num){ # 以点1开始更新联通点，其实因为有if (mark[i] == 0)，所以2:num还是1:num无所谓
     if (mark[i] == 0){
@@ -81,9 +84,10 @@ for(x in 2:num){ # 遍历全部的点
   k = Min(num) # 从联通点中距离最短的点开始继续更新该点的联通点 
   mark[k] = 1 # 比如，点1的联通点中最小点为2，那么下一轮从2开始，同时点2不再更新，点3、4还有更新的机会
 }
+```
 5.可视化 
 代码 
-
+```
 ## 打印终点到终点的最短距离----
 cat("Shortest distance to node",num,":", dist[num], "\n")
 
@@ -92,10 +96,10 @@ for (u in 1:num){
   cat(sprintf("Shortest Path to node %d: %d -> %d\n", u, path[u], u))
   cat(sprintf("Minimum Distance to node %d: %d\n", u, dist[u]))
 }
-
+```
 
 完整代码
-
+```
 # 设置data，存放有向图信息----
 ## data中每个点所在的行序号为起始点序号，列为终点序号----
 ### 比如：值4的坐标为(1,2)即点1到点2距离为4；值8的坐标为(6,7)即点6到点7距离为8；INF表示x->y不通----
@@ -171,4 +175,4 @@ for (u in 1:num){
   cat(sprintf("Shortest Path to node %d: %d -> %d\n", u, path[u], u))
   cat(sprintf("Minimum Distance to node %d: %d\n", u, dist[u]))
 }
-​
+​```
